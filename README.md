@@ -18,20 +18,27 @@ Your assignment page on Canvas should contain instructions for submitting this p
 
 | N | Method | Endpoint                | Description                                                                                                                     |
 | - | ------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| 1 | GET    | /api/posts              | Returns **an array of all the post objects** contained in the database                                                          |
+| 1 | GET    | /api/posts              | Returns **an array of all the post objects** contained in the database                                                          | - ok
+
+
 | 2 | GET    | /api/posts/:id          | Returns **the post object with the specified id**                                                                               |
 | 3 | POST   | /api/posts              | Creates a post using the information sent inside the request body and returns **the newly created post object**                 |
+
 | 4 | PUT    | /api/posts/:id          | Updates the post with the specified id using data from the request body and **returns the modified document**, not the original |
+
 | 5 | DELETE | /api/posts/:id          | Removes the post with the specified id and returns the **deleted post object**                                                  |
+
 | 6 | GET    | /api/posts/:id/comments | Returns an **array of all the comment objects** associated with the post with the specified id                                  |
 
-#### 1 [GET] /api/posts
+
+#### 1 [GET] /api/posts - ok 
 
 - If there's an error in retrieving the _posts_ from the database:
   - respond with HTTP status code `500`.
   - return the following JSON: `{ message: "The posts information could not be retrieved" }`.
 
-#### 2 [GET] /api/posts/:id
+
+#### 2 [GET] /api/posts/:id - ok
 
 - If the _post_ with the specified `id` is not found:
 
@@ -42,7 +49,8 @@ Your assignment page on Canvas should contain instructions for submitting this p
   - respond with HTTP status code `500`.
   - return the following JSON: `{ message: "The post information could not be retrieved" }`.
 
-#### 3 [POST] /api/posts
+
+#### 3 [POST] /api/posts - ok
 
 - If the request body is missing the `title` or `contents` property:
 
@@ -59,7 +67,8 @@ Your assignment page on Canvas should contain instructions for submitting this p
   - respond with HTTP status code `500` (Server Error).
   - return the following JSON: `{ message: "There was an error while saving the post to the database" }`.
 
-#### 4 [PUT] /api/posts/:id
+
+#### 4 [PUT] /api/posts/:id - ok
 
 - If the _post_ with the specified `id` is not found:
 
@@ -82,6 +91,7 @@ Your assignment page on Canvas should contain instructions for submitting this p
   - return HTTP status code `200` (OK).
   - return the newly updated _post_.
 
+
 #### 5 [DELETE] /api/posts/:id
 
 - If the _post_ with the specified `id` is not found:
@@ -93,6 +103,7 @@ Your assignment page on Canvas should contain instructions for submitting this p
 
   - respond with HTTP status code `500`.
   - return the following JSON: `{ message: "The post could not be removed" }`.
+
 
 #### 6 [GET] /api/posts/:id/comments
 
@@ -113,10 +124,15 @@ The `data` folder contains a database populated with test `posts`.
 Database access will be done using the `posts-model.js` file included inside the `api/posts` folder:
 
 - `find()`: calling find returns a promise that resolves to an array of all the `posts` contained in the database.
+
 - `findById()`: this method expects an `id` as it's only argument and returns a promise that resolves to the post corresponding to the `id` provided or `undefined` if no post with that `id` is found.
+
 - `insert()`: calling insert passing it a `post` object will add it to the database and return a promise that resolves to an object with the `id` of the inserted post. The object looks like this: `{ id: 123 }`.
+
 - `update()`: accepts two arguments, the first is the `id` of the post to update and the second is an object with the `changes` to apply. It returns a promise that resolves to the count of updated records. If the count is 1 it means the record was updated correctly.
+
 - `remove()`: the remove method accepts an `id` as its first argument and upon successfully deleting the post from the database it returns a promise that resolves to the number of records deleted.
+
 - `findPostComments()`: the findPostComments accepts a `postId` as its first argument and returns a promise that resolves to an array of all comments on the post associated with the post id.
 
 ### Blog Post Schema

@@ -1,3 +1,5 @@
+// The model file will grab stuff from the db & bring it back to the server
+
 const db = require('../../data/db-config');
 
 module.exports = {
@@ -11,14 +13,18 @@ module.exports = {
   insertComment,
 };
 
+// router.get
 function find() {
   return db('posts');
 }
 
+// router.get
+// router.put
 function findById(id) {
   return db('posts').where({ id: Number(id) }).first()
 }
 
+// router.post
 function insert(post) {
   return db('posts')
     .insert(post)
@@ -31,6 +37,7 @@ function update(id, post) {
     .update(post);
 }
 
+// router.delete
 function remove(id) {
   return db('posts')
     .where('id', Number(id))
